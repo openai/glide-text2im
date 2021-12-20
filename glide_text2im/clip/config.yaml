@@ -1,0 +1,18 @@
+logit_scale: 100.0
+
+# Diffusion settings
+beta_schedule: "squaredcos_cap_v2"
+n_timesteps: 1000
+
+# Architecture settings
+image_size: 64
+patch_size: 4
+n_vocab: 65536
+max_text_len: 77
+n_embd: 512
+n_head_state_text: 64
+n_head_text: 8
+n_xf_blocks_text: 12
+n_head_state_image: 64
+n_head_image: 12
+n_xf_blocks_image: 12
