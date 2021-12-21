@@ -1,7 +1,7 @@
 # Overview
 
 This card describes the diffusion model GLIDE (filtered) and noised CLIP model described in the paper [GLIDE: Towards
-Photorealistic Image Generation and Editing with Text-Guided Diffusion Models][https://arxiv.org/abs/2112.10741]
+Photorealistic Image Generation and Editing with Text-Guided Diffusion Models](https://arxiv.org/abs/2112.10741)
 
 # Datasets
 
