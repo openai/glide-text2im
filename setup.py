@@ -10,6 +10,8 @@ setup(
         "filelock",
         "requests",
         "tqdm",
+        "ftfy",
+        "regex",
     ],
     author="OpenAI",
 )
