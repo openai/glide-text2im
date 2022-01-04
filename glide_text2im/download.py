@@ -34,12 +34,12 @@ def fetch_file_cached(
     if cache_dir is None:
         cache_dir = default_cache_dir()
     os.makedirs(cache_dir, exist_ok=True)
+    local_path = os.path.join(cache_dir, url.split("/")[-1])
+    if os.path.exists(local_path):
+        return local_path
     response = requests.get(url, stream=True)
     size = int(response.headers.get("content-length", "0"))
-    local_path = os.path.join(cache_dir, url.split("/")[-1])
     with FileLock(local_path + ".lock"):
-        if os.path.exists(local_path):
-            return local_path
         if progress:
             pbar = tqdm(total=size, unit="iB", unit_scale=True)
         tmp_path = local_path + ".tmp"
