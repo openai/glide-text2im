@@ -19,6 +19,6 @@ For detailed usage examples, see the [notebooks](notebooks) directory.
  * The [clip_guided](notebooks/clip_guided.ipynb) [![][colab]][colab-guided] notebook shows how to use GLIDE (filtered) + a filtered noise-aware CLIP model to produce images conditioned on text prompts. 
 
 [colab]: <https://colab.research.google.com/assets/colab-badge.svg>
-[colab-text2im]: <https://colab.research.google.com/github/openai/glide-text2im/blob/main/notebooks/text2im.ipynb>
+[colab-text2im]: <https://colab.research.google.com/drive/1kUVd_XBkm7akclZsI0Z1BzKjo92jCbXI?usp=sharing>
 [colab-inpaint]: <https://colab.research.google.com/github/openai/glide-text2im/blob/main/notebooks/inpaint.ipynb>
 [colab-guided]: <https://colab.research.google.com/github/openai/glide-text2im/blob/main/notebooks/clip_guided.ipynb>
