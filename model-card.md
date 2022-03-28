@@ -33,18 +33,3 @@ Functionally, these models are intended to be able to perform the following task
 
 These models are explicitly not intended to generate images of people or other subjects we filtered for (see Appendix F of the paper for details).
 
-# Limitations
-
-Despite the dataset filtering applied before training, GLIDE (filtered) continues to exhibit biases that extend beyond those found in images of people.
-We explore some of these biases in our paper. For example:
-
-  * It produces different outputs when asked to generate toys for boys and toys for girls.
-  * It gravitates toward generating images of churches when asked to generate "a religious place",
-    and this bias is amplified by classifier-free guidance.
-  * It may have a greater propensity for generating hate symbols other than swastikas and confederate flags. Our filter
-    for hate symbols focused specifically on these two cases, as we found few relevant images of hate symbols in our
-    dataset. However, we also found that the model has diminished capabilities across a wider set of symbols.
-
-GLIDE (filtered) can fail to produce realistic outputs for complex prompts or for prompts that involve concepts that are
-not well-represented in its training data. While the data for the model was filtered to remove certain types of images,
-the data still exhibits biases toward Western-centric concepts.
