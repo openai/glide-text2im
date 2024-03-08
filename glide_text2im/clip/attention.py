@@ -108,7 +108,7 @@ class DenseCausalAttentionMask(AttentionMask):
     def __attrs_post_init__(self) -> None:
         super().__attrs_post_init__()
 
-        self.global_layout = np.tril(np.ones([self.n_query_block, self.n_key_block], dtype=np.bool))
+        self.global_layout = np.tril(np.ones([self.n_query_block, self.n_key_block], dtype=np.bool_))
         n_zero_query_blocks = self.n_query_pad // self.block_size
         n_zero_key_blocks = self.n_key_pad // self.block_size
         self.global_layout[self.n_query_block - n_zero_query_blocks :] = False
