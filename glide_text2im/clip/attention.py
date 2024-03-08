@@ -39,13 +39,13 @@ class AttentionMask(ABC):
 
     def _make_global_layout(self) -> None:
         if not self.is_head_specific:
-            m = np.ones([self.n_query_block, self.n_key_block], dtype=np.bool)
+            m = np.ones([self.n_query_block, self.n_key_block], dtype=np.bool_)
             r = product(*[range(n) for n in m.shape])
 
             for qb, kb in r:
                 m[qb, kb] = np.any(self.block_layout(None, 0, qb, kb, 0))
         else:
-            m = np.ones([self.n_head, self.n_query_block, self.n_key_block], dtype=np.bool)
+            m = np.ones([self.n_head, self.n_query_block, self.n_key_block], dtype=np.bool_)
             r = product(*[range(n) for n in m.shape])
 
             for h, qb, kb in r:
@@ -66,7 +66,7 @@ class AttentionMask(ABC):
         `query_idx`, `key_idx` are block-level, zero-based indices.
         """
 
-        m = np.ones([self.block_size, self.block_size], dtype=np.bool)
+        m = np.ones([self.block_size, self.block_size], dtype=np.bool_)
 
         if query_idx >= self.first_pad_query_block_idx:
             n_pad = min(
@@ -91,7 +91,7 @@ class DenseAttentionMask(AttentionMask):
     def __attrs_post_init__(self) -> None:
         super().__attrs_post_init__()
 
-        self.global_layout = np.ones([self.n_query_block, self.n_key_block], dtype=np.bool)
+        self.global_layout = np.ones([self.n_query_block, self.n_key_block], dtype=np.bool_)
         n_zero_query_blocks = self.n_query_pad // self.block_size
         n_zero_key_blocks = self.n_key_pad // self.block_size
         self.global_layout[self.n_query_block - n_zero_query_blocks :] = False
@@ -100,7 +100,7 @@ class DenseAttentionMask(AttentionMask):
     def _block_layout(
         self, blk_shape: Any, head_idx: int, query_idx: int, key_idx: int, blk_idx: int
     ) -> np.ndarray:
-        return np.ones([self.block_size, self.block_size], dtype=np.bool)
+        return np.ones([self.block_size, self.block_size], dtype=np.bool_)
 
 
 @attr.s
@@ -108,7 +108,7 @@ class DenseCausalAttentionMask(AttentionMask):
     def __attrs_post_init__(self) -> None:
         super().__attrs_post_init__()
 
-        self.global_layout = np.tril(np.ones([self.n_query_block, self.n_key_block], dtype=np.bool))
+        self.global_layout = np.tril(np.ones([self.n_query_block, self.n_key_block], dtype=np.bool_))
         n_zero_query_blocks = self.n_query_pad // self.block_size
         n_zero_key_blocks = self.n_key_pad // self.block_size
         self.global_layout[self.n_query_block - n_zero_query_blocks :] = False
@@ -118,11 +118,11 @@ class DenseCausalAttentionMask(AttentionMask):
         self, blk_shape: Any, head_idx: int, query_idx: int, key_idx: int, blk_idx: int
     ) -> np.ndarray:
         if query_idx > key_idx:
-            return np.ones(2 * [self.block_size], dtype=np.bool)
+            return np.ones(2 * [self.block_size], dtype=np.bool_)
         elif query_idx < key_idx:
-            return np.zeros(2 * [self.block_size], dtype=np.bool)
+            return np.zeros(2 * [self.block_size], dtype=np.bool_)
         else:
-            return np.tril(np.ones(2 * [self.block_size], dtype=np.bool))
+            return np.tril(np.ones(2 * [self.block_size], dtype=np.bool_))
 
 
 @attr.s(eq=False, repr=False)
